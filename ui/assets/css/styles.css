@@ -1,0 +1,182 @@
+body {
+    font-family: Arial, sans-serif;
+    background: transparent;
+    color: white;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #ffa60000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #bd7b00;
+    width: 11px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #fec014;
+}
+
+/* Card Styling */
+.card,
+.card-header,
+.card-body,
+.card-footer {
+    background-color: transparent;
+}
+
+.BodyCard {
+    background: #212529;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 1820px;
+    height: 100vh;
+    max-height: 1080px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    padding-bottom: 20px;
+}
+
+@media only screen and (max-width: 1950px) {
+    .BodyCard {
+        max-height: 840px;
+    }
+}
+
+/* accordion */
+.accordion,
+.accordion-item {
+    background: transparent !important;
+}
+
+.accordion-body {
+    background: #3b4249 !important;
+}
+
+.accordion-button:not(.collapsed),
+.accordion-button {
+    background-color: transparent;
+    color: #fff;
+    box-shadow: none;
+}
+
+.accordion-button:focus {
+    border-color: transparent !important;
+    box-shadow: 0 0 0 .25rem rgba(163, 163, 163, 0.123);
+}
+
+/* Header Styling */
+.BodyCard>.card-header,
+.BodyCard>.modal-header {
+    background: #3b4249;
+    padding-top: 20px;
+}
+
+.BodyCard>.card-body,
+.BodyCard>.modal-body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: calc(100vh - 200px);
+}
+
+.modal-content {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Close Button */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px 15px;
+    background-color: red;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+    z-index: 9999;
+}
+
+/* Info Styling */
+.info .headItem:last-child {
+    border-right: none;
+}
+
+.info-wrapper {
+    position: relative;
+}
+
+.info-label {
+    color: rgb(211, 95, 0);
+    font-weight: 600;
+    text-shadow: 0 0 3px #000;
+    margin: 0;
+    padding: 0;
+    padding-top: 5px;
+    font-size: 1.8em;
+}
+
+.info-value {
+    color: rgb(219, 179, 0);
+    font-weight: bold;
+    text-shadow: 0 0 3px #000;
+    margin: 0;
+    padding: 0;
+    font-size: 1.8em;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.info {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+#app-wait {
+    z-index: 1001;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+#app-wait i,
+#app-wait img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: red;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.table {
+    color: #fff;
+    text-align: left !important;
+}
+
+.thead {
+    font-size: 1.2em;
+    word-break: keep-all;
+}
