@@ -6,12 +6,12 @@ Config.Tables = {
     law_books = {
         name = "myemergency_law_books", -- tablename
         order = "id",                   -- the column by which the sorting should be done | empty for nothing
-        sorting_type = "ASC"            -- ASC Ato Z/1 to 9 | DESC Z to A/9 to 1 | empty for nothing
+        sorting_type = "ASC",           -- ASC Ato Z/1 to 9 | DESC Z to A/9 to 1 | empty for nothing
     },
     law_book_laws = {
         name = "myemergency_law_book_laws", -- tablename
         order = "paragraph",                -- the column by which the sorting should be done | empty for nothing
-        sorting_type = "ASC"                -- ASC Ato Z/1 to 9 | DESC Z to A/9 to 1 | empty for nothing
+        sorting_type = "ASC",               -- ASC Ato Z/1 to 9 | DESC Z to A/9 to 1 | empty for nothing
     }
 }
 
@@ -45,26 +45,26 @@ Config.LawBookName = "{bookID} – {bookName} ({bookShortName})"
 Config.TableHeads = {
     [1] = {
         column = "paragraph", -- leave colums default, ONLY if you renamed the columns in your database table, you can edit
-        label = "Paragraph" -- translate it to your language
+        label = "Paragraph"   -- translate it to your language
     },
     [2] = {
         column = "crime", -- leave colums default, ONLY if you renamed the columns in your database table, you can edit
-        label = "Titel" -- translate it to your language
+        label = "Titel"   -- translate it to your language
     },
     [3] = {
         column = "other", -- leave colums default, ONLY if you renamed the columns in your database table, you can edit
-        label = "Inhalt" -- translate it to your language
+        label = "Inhalt"  -- translate it to your language
     },
     [4] = {
         column = "minimum_penalty", -- leave colums default, ONLY if you renamed the columns in your database table, you can edit
-        label = "Geldstrafe" -- translate it to your language
+        label = "Geldstrafe"        -- translate it to your language
     },
     [5] = {
         column = "detention_time", -- leave colums default, ONLY if you renamed the columns in your database table, you can edit
-        label = "Haftzeit" -- translate it to your language
+        label = "Haftzeit"         -- translate it to your language
     },
     [6] = {
-        column = "changeddate", -- leave colums default, ONLY if you renamed the columns in your database table, you can edit
+        column = "changeddate",   -- leave colums default, ONLY if you renamed the columns in your database table, you can edit
         label = "letzte Änderung" -- translate it to your language
     },
 }

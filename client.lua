@@ -1,5 +1,3 @@
-ESX = exports["es_extended"]:getSharedObject()
-
 RegisterNetEvent(GetCurrentResourceName() .. ':client:openNUI')
 AddEventHandler(GetCurrentResourceName() .. ':client:openNUI', function(data)
     if not data or #data < 1 then return end
