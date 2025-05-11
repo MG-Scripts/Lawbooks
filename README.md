@@ -93,7 +93,7 @@ Config.TableHeads = {
     },
 }
 ```
-Current language is german, you can change the labels to your language. you should leave colums default, ONLY if you renamed the columns in your database table, you can edit
+The default language is German. You may replace the labels with those in your own language. Please leave the column names at their defaults—only modify them if you have renamed the corresponding columns in your database table.
 
 ## Usage
 
