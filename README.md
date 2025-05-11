@@ -65,9 +65,36 @@ Config.Locations = {
   },
 }
 
--- Title template for each law book
+-- available: {bookID} {bookName} {bookShortName}
 Config.LawBookName = "{bookID} – {bookName} ({bookShortName})"
+Config.TableHeads = {
+    [1] = {
+        column = "paragraph",
+        label = "Paragraph"
+    },
+    [2] = {
+        column = "crime",
+        label = "Titel"
+    },
+    [3] = {
+        column = "other",
+        label = "Inhalt"
+    },
+    [4] = {
+        column = "minimum_penalty",
+        label = "Geldstrafe"
+    },
+    [5] = {
+        column = "detention_time",
+        label = "Haftzeit"
+    },
+    [6] = {
+        column = "changeddate",
+        label = "letzte Änderung"
+    },
+}
 ```
+Current language is german, you can change the labels to your language. you should leave colums default, ONLY if you renamed the columns in your database table, you can edit
 
 ## Usage
 
