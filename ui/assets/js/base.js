@@ -1,5 +1,30 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    function debugJSON(obj, label = 'Object') {
+        if (arguments.length === 0) {
+            console.log(`${label}: <no argument passed>`);
+            return;
+        }
+        if (obj === null) {
+            console.log(`${label}: null`);
+            return;
+        }
+        if (obj === undefined) {
+            console.log(`${label}: undefined`);
+            return;
+        }
+        const seen = new WeakSet();
+        const jsonString = JSON.stringify(obj, (key, value) => {
+            if (typeof value === 'object' && value !== null) {
+                if (seen.has(value)) return '[Circular]';
+                seen.add(value);
+            }
+            return value;
+        }, 2);
+        console.log(`${label}:`);
+        console.log(jsonString);
+    }
+
     function toggleInterface(show) {
         const body = document.getElementById('law-book-body');
         if (show) {
@@ -18,9 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Funktion, die häufig fehlerhafte Zeichensequenzen ersetzt
     function fixUmlaute(text) {
-        if (!text) return text; // falls text leer oder null
+        if (!text) return text; 
         return text
             .replace(/Ã¼/g, "ü")
             .replace(/Ã–/g, "Ö")
@@ -30,26 +54,44 @@ document.addEventListener("DOMContentLoaded", function () {
             .replace(/ÃŸ/g, "ß")
     }
 
-    /**
-     * Ersetzt Platzhalter im Template durch Werte aus dem book-Objekt.
-     * Unterstützt beliebige Properties, z.B. {bookID}, {bookName}, {bookShortName}, ...
-     *
-     * @param {string} template - z.B. "{bookID} {bookName} ({bookShortName})"
-     * @param {object} book - z.B. { bookID: 1, bookName: "Strafrecht", bookShortName: "StR" }
-     * @returns {string}
-     */
     function formatBookTitle(template, book) {
         return template.replace(/\{(\w+)\}/g, (match, key) => {
             return (book[key] != null) ? book[key] : "";
         });
     }
 
-    function createAccordionItem(book, bookNameTemplate) {
+    function buildTableHtml(headsConfig, dataRows) {
+        let html = '<table class="table"><thead><tr>';
+        headsConfig.forEach(({label}) => {
+            html += `<th style="min-width: 100px;">${label}</th>`;
+        });
+        html += '</tr></thead><tbody>';
+
+        dataRows.forEach(row => {
+            html += '<tr>';
+            headsConfig.forEach(({column}) => {
+                let cell = row[column] != null ? row[column] : "";
+                if (typeof cell === 'string') {
+                    cell = fixUmlaute(cell);
+                }
+                html += `<td style="min-width: 100px;">${cell}</td>`;
+            });
+            html += '</tr>';
+        });
+
+        html += '</tbody></table>';
+        return html;
+    }
+
+
+    function createAccordionItem(book, bookNameTemplate, tableHeads) {
         let html = "";
+        debugJSON(tableHeads)
+        debugJSON(bookNameTemplate)
         const bookID = book.bookID;
         const titleText = formatBookTitle(bookNameTemplate, {
-            bookID:        bookID,
-            bookName:      book.bookName,
+            bookID: bookID,
+            bookName: book.bookName,
             bookShortName: book.bookShortName
         });
         html += `<div id="${book.bookShortName}-${bookID}" class="accordion-item">`;
@@ -76,31 +118,28 @@ document.addEventListener("DOMContentLoaded", function () {
         html += `</div>`;
         html += `</div>`;
         html += `</form>`;
+        html += buildTableHtml(tableHeads, book.laws);
 
 
-        html += `<table class="table" id="table-${bookID}">`;
-        html += `<thead><tr>
-                    <th>Paragraph</th>
-                    <th>Titel</th>
-                    <th>Inhalt</th>
-                    <th>Geldstrafe</th>
-                    <th>Haftzeit</th>
-                    <th>letzte Änderung</th>
-                </tr></thead>`;
-        html += `<tbody>`;
-        book.laws.forEach(law => {
-            html += `<tr>`;
-            html += `<td>${law.paragraph}</td>`;
-            html += `<td>${fixUmlaute(law.crime)}</td>`;
-            html += `<td>${fixUmlaute(law.other)}</td>`;
-            html += `<td>${law.minimum_penalty}</td>`;
-            html += `<td>${law.detention_time}</td>`;
-            html += `<td>${law.changeddate}</td>`;
-            html += `</tr>`;
-        });
-
-        html += `</tbody>`;
-        html += `</table>`;
+        // html += `<table class="table" id="table-${bookID}">`;
+        // html += `<thead><tr>`
+        // tableHeads.forEach(tHead => {
+        //     html += `<th>${tHead}</th>`
+        // })
+        // html += `</tr></thead>`;
+        // html += `<tbody>`;
+        // book.laws.forEach(law => {
+        //     html += `<tr>`;
+        //     html += `<td>${law.paragraph}</td>`;
+        //     html += `<td>${fixUmlaute(law.crime)}</td>`;
+        //     html += `<td>${fixUmlaute(law.other)}</td>`;
+        //     html += `<td>${law.minimum_penalty}</td>`;
+        //     html += `<td>${law.detention_time}</td>`;
+        //     html += `<td>${law.changeddate}</td>`;
+        //     html += `</tr>`;
+        // });
+        // html += `</tbody>`;
+        // html += `</table>`;
 
         html += `</div>`;
         html += `</div>`;
@@ -109,10 +148,10 @@ document.addEventListener("DOMContentLoaded", function () {
         return html;
     }
 
-    function buildAccordion(lawData, bookNameTemplate) {
+    function buildAccordion(lawData, bookNameTemplate, tableHeads) {
         let accordionHTML = "";
         lawData.forEach(book => {
-            accordionHTML += createAccordionItem(book, bookNameTemplate);
+            accordionHTML += createAccordionItem(book, bookNameTemplate, tableHeads);
         });
         return accordionHTML;
     }
@@ -160,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const lawData = data.data;
                 const accordion = document.getElementById('lawBooks');
                 if (accordion) {
-                    accordion.innerHTML = buildAccordion(lawData, data.bookNameTemplate);
+                    accordion.innerHTML = buildAccordion(lawData, data.bookNameTemplate, data.tableHeads);
                     attachSearchFunctionality();
                 } else {
                     console.error("Accordion Container nicht gefunden!");

@@ -8,7 +8,8 @@ AddEventHandler(GetCurrentResourceName() .. ':client:openNUI', function(data)
         action = "showLawbooks",
         data = data,
         heading = Config.Header,
-        bookNameTemplate = Config.LawBookName
+        bookNameTemplate = Config.LawBookName,
+        tableHeads = Config.TableHeads
     })
     SetNuiFocus(true, true)
 end)
