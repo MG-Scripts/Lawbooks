@@ -44,27 +44,27 @@ Config.Locations = {
 Config.LawBookName = "{bookID} – {bookName} ({bookShortName})"
 Config.TableHeads = {
     [1] = {
-        column = "paragraph",
-        label = "Paragraph"
+        column = "paragraph", -- leave colums default, ONLY if you renamed the columns in your database table, you can edit
+        label = "Paragraph" -- translate it to your language
     },
     [2] = {
-        column = "crime",
-        label = "Titel"
+        column = "crime", -- leave colums default, ONLY if you renamed the columns in your database table, you can edit
+        label = "Titel" -- translate it to your language
     },
     [3] = {
-        column = "other",
-        label = "Inhalt"
+        column = "other", -- leave colums default, ONLY if you renamed the columns in your database table, you can edit
+        label = "Inhalt" -- translate it to your language
     },
     [4] = {
-        column = "minimum_penalty",
-        label = "Geldstrafe"
+        column = "minimum_penalty", -- leave colums default, ONLY if you renamed the columns in your database table, you can edit
+        label = "Geldstrafe" -- translate it to your language
     },
     [5] = {
-        column = "detention_time",
-        label = "Haftzeit"
+        column = "detention_time", -- leave colums default, ONLY if you renamed the columns in your database table, you can edit
+        label = "Haftzeit" -- translate it to your language
     },
     [6] = {
-        column = "changeddate",
-        label = "letzte Änderung"
+        column = "changeddate", -- leave colums default, ONLY if you renamed the columns in your database table, you can edit
+        label = "letzte Änderung" -- translate it to your language
     },
 }
