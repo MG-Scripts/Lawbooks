@@ -1,5 +1,3 @@
-ESX = exports["es_extended"]:getSharedObject()
-
 RegisterNetEvent(GetCurrentResourceName() .. ':server:getLawbooks')
 AddEventHandler(GetCurrentResourceName() .. ':server:getLawbooks', function()
     local _source = source
