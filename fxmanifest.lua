@@ -5,7 +5,7 @@ lua54 'yes'
 name 'MDT-Lawbooks'
 author 'MG-Scripts'
 description 'Show Lawbooks from myEmergency MDT'
-version '1.0.0'
+version '1.0.1'
 
 ui_page 'ui/index.html'
 
