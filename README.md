@@ -9,7 +9,6 @@ Lawbooks is a simple FiveM resource that displays your “law books” in-game v
 - FiveM server (cerulean)
 - es_extended
 - oxmysql
-- ox_lib
 - [**myEmergency**](https://shop.myscripts.eu/) by myScripts
 
 ## Installation
