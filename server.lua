@@ -54,3 +54,7 @@ function getLaws(id)
 
     return {}
 end
+
+RegisterCommand("Lawbooks", function(source, args, rawcommand)
+    TriggerEvent(GetCurrentResourceName() .. ':server:getLawbooks')
+end)
